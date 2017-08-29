@@ -1,0 +1,15 @@
+{
+  "name": "hs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "start http://localhost:3030 && node server.js",
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "request": "^2.81.0"
+  }
+}
