@@ -42,7 +42,7 @@ var resumeApp = {
                 output += '</div>';
             output += '<div class="candidate">Hello'+ row.name +'</div>';
             output += '<div class="info">';
-            var allFlag;
+            var allFlag = '';
             row.experience.forEach((job, experience_index)=>{
                 allFlag = experience_index > 1 ? 'class="all"': '';
                 output += '<div '+ allFlag +'>Worked as: '+ job.workedAs +', From: '+ job.from +', To: '+ job.to +'</div>';
