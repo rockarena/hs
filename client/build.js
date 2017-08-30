@@ -1,6 +1,6 @@
 var resumeApp = {
     content: $('.content'),
-    viewData: '',
+    viewData: [],
     start: function(argument) {
         this.getData()
     },
