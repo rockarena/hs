@@ -13,16 +13,16 @@ var resumeApp = {
     },
     prepareView: function (data) {
         var self = this;
-        this.viewData = data.map(function (row) {
+        this.viewData = data.map(function (candidate) {
             return {
-                name: row.contact_info.name.formatted_name,
-                experience: self.getExperience(row.experience),
-                img:row.contact_info.image_url
+                name: candidate.contact_info.name.formatted_name,
+                experience: self.getExperience(candidate.experience),
+                img:candidate.contact_info.image_url
             }      
           });
     },
-    getExperience: function (data) {
-        return data.map(function (row) {
+    getExperience: function (experience) {
+        return experience.map(function (row) {
             return {
                 workedAs: row.position_type,
                 from: row.start_date,
@@ -30,34 +30,34 @@ var resumeApp = {
             }
         }) 
     },
-    renderView: function (output) {
-          this.content.html(output)
+    renderView: function (html) {
+          this.content.html(html)
     },
     setView: function () {
-         var output = '';
-         this.viewData.forEach((row, card_index)=>{
-            output += '<div class="card card_'+card_index+'">';
-                output += '<div class="image-wrapper">';
-                    output += '<img class="image" src="'+ row.img +'">';
-                output += '</div>';
-            output += '<div class="candidate">Hello'+ row.name +'</div>';
-            output += '<div class="info">';
+         var html = '';
+         this.viewData.forEach((candidate, cardIndex)=>{
+            html += '<div class="card card_'+cardIndex+'">';
+                html += '<div class="image-wrapper">';
+                    html += '<img class="image" src="'+ candidate.img +'">';
+                html += '</div>';
+            html += '<div class="candidate">Hello'+ candidate.name +'</div>';
+            html += '<div class="info">';
             var allFlag = '';
-            row.experience.forEach((job, experience_index)=>{
-                allFlag = experience_index > 1 ? 'class="all"': '';
-                output += '<div '+ allFlag +'>Worked as: '+ job.workedAs +', From: '+ job.from +', To: '+ job.to +'</div>';
+            candidate.experience.forEach((job, experienceIndex)=>{
+                allFlag = experienceIndex > 1 ? 'class="all"': '';
+                html += '<div '+ allFlag +'>Worked as: '+ job.workedAs +', From: '+ job.from +', To: '+ job.to +'</div>';
             });
             if (allFlag.length){
-                output +='<div class="more_or_less" onclick="resumeApp.showMore(' + card_index + ',this)">more &gt;&gt;</div>'
+                html +='<div class="more_or_less" onclick="resumeApp.showMore(' + cardIndex + ',this)">more &gt;&gt;</div>'
             }
-            output +='</div>';
-            output +='</div>'
+            html +='</div>';
+            html +='</div>'
          });
 
-         this.renderView(output); 
+         this.renderView(html); 
     },
-    showMore: function (index, element) {
-          $('.card_' + index + ' .all').toggle();
+    showMore: function (cardIndex, element) {
+          $('.card_' + cardIndex + ' .all').toggle();
           $(element).html() == 'more &gt;&gt;' ? $(element).html('less &lt;&lt;') : $(element).html('more &gt;&gt;')
     }
 }
