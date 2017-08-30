@@ -40,7 +40,7 @@ var resumeApp = {
                 html += '<div class="image-wrapper">';
                     html += '<img class="image" src="'+ candidate.img +'">';
                 html += '</div>';
-            html += '<div class="candidate">Hello'+ candidate.name +'</div>';
+            html += '<div class="candidate">'+ candidate.name +'</div>';
             html += '<div class="info">';
             var allFlag = '';
             candidate.experience.forEach((job, experienceIndex)=>{
