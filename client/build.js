@@ -47,7 +47,7 @@ var resumeApp = {
                 allFlag = experience_index > 1 ? 'class="all"': '';
                 output += '<div '+ allFlag +'>Worked as: '+ job.workedAs +', From: '+ job.from +', To: '+ job.to +'</div>';
             });
-            if (allFlag){
+            if (allFlag.length){
                 output +='<div class="more_or_less" onclick="resumeApp.showMore(' + card_index + ',this)">more &gt;&gt;</div>'
             }
             output +='</div>';
